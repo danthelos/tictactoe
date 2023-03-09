@@ -1,13 +1,20 @@
 package game;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        //Matrix matrix = new Matrix();
         char[][] gameBoard = Board.getBoard();
-       Board.printBoard(gameBoard);
+        Board.printBoard(gameBoard);
 
         int[] coordinates  = Move.getCoordinates();
-        System.out.print("Coordinates: " + coordinates[0] + ":" + coordinates[1]);
+
+        //System.out.println("Coordinates: " + Arrays.toString(Move.printCoordinates(coordinates)));
+        //System.out.println("If this cell is empty ? " + Board.isCellEmpty(coordinates));
+
+        Board.fillCell(coordinates);
+
+        Board.printBoard(gameBoard);
     }
 }
