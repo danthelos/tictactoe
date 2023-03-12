@@ -64,20 +64,22 @@ public class Board {
         return false;
     }
 
-    static void fillCell(int[] coordinates) {
-        board[coordinates[0]][coordinates[1]] = 'X';
+    static void fillCell(int[] coordinates, char userSymbol) {
+        board[coordinates[0]][coordinates[1]] = userSymbol;
     }
 
     static char calculateUserSymbol(char board[][]) {
         char userSymbol = 'X';
-        int amountX = countOccurrences(board,'X');
-        int amountY = 0;
+        int countOccurrencesX = countOccurrences(board, 'X');
+        int countOccurrencesO = countOccurrences(board, 'O');
 
-
+        if (countOccurrencesX > countOccurrencesO) {
+            userSymbol = 'O';
+        }
         return userSymbol;
     }
 
-    static int countOccurrences(char board[][], int element) {
+    static int countOccurrences(char[][] board, char element) {
         int count = 0;
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
@@ -86,5 +88,48 @@ public class Board {
             }
         }
         return count;
+    }
+
+    static boolean isBoardFull (char[][] board){
+        if (countOccurrences(board, '_') == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    static GameState checkWinner(char[][] board) {
+        char winner = '_';
+        //check if there is a winner in row
+        for (int i = 0; i < board.length; i++) {
+            if (board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
+                winner = board[i][0];
+            }
+        }
+
+        //check if there is a winner in column
+        for (int i = 0; i < board.length; i++) {
+            if (board[0][i] == board[1][i] && board[1][i] == board[2][1]) {
+                winner = board[0][i];
+            }
+        }
+
+        //Check if there is a diagonnal winner
+        if (board[0][0] == board[1][1] && board[1][1] == board[2][2])  {
+                winner = board[1][1];
+
+        }
+        if (board[2][0] == board[1][1] && board[1][1] == board[0][2])  {
+            winner = board[1][1];
+
+        }
+        switch (winner) {
+            case 'X' :
+                return GameState.X_WON;
+            case 'O' :
+                return GameState.O_WON;
+            default :
+                return GameState.GAME_NOT_FINISHED;
+        }
+
     }
 }
