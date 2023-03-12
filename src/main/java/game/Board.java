@@ -103,23 +103,26 @@ public class Board {
         for (int i = 0; i < board.length; i++) {
             if (board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
                 winner = board[i][0];
+                System.out.println("Winner from row number:" + i + " is: " + board[i][0]);
             }
         }
 
         //check if there is a winner in column
         for (int i = 0; i < board.length; i++) {
-            if (board[0][i] == board[1][i] && board[1][i] == board[2][1]) {
+            if (board[0][i] == board[1][i] && board[1][i] == board[2][i]) {
                 winner = board[0][i];
+                System.out.println("Winner from column number:" + i + " is: " + board[0][i]);
             }
         }
 
         //Check if there is a diagonnal winner
         if (board[0][0] == board[1][1] && board[1][1] == board[2][2])  {
                 winner = board[1][1];
-
+                System.out.println("Winner from diagonal front is: " + board[1][1]);
         }
         if (board[2][0] == board[1][1] && board[1][1] == board[0][2])  {
             winner = board[1][1];
+            System.out.println("Winner from diagonal oposite is: " + board[1][1]);
 
         }
         switch (winner) {
