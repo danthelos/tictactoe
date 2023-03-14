@@ -7,6 +7,11 @@ public class Board {
     private static char[][] board = new char[3][3];
     private static char userSymbol = 'X';
 
+    //Constructors
+    public Board() {
+        this.board = board;
+    }
+
     static char[][] getBoard() {
 
         System.out.print("Enter the cells: ");
@@ -18,6 +23,15 @@ public class Board {
             for (int j = 0; j < board[i].length; j++) {
                 board[i][j] = inputData.charAt(charPosition);
                 charPosition++;
+            }
+        }
+        return board;
+    }
+
+    static char[][] initializeBoard() {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                board[i][j] = CellState.EMPTY.getStateSymbol();
             }
         }
         return board;
@@ -91,19 +105,19 @@ public class Board {
     }
 
     static boolean isBoardFull (char[][] board){
-        if (countOccurrences(board, '_') == 0) {
+        if (countOccurrences(board, CellState.EMPTY.getStateSymbol()) == 0) {
             return true;
         }
         return false;
     }
 
     static GameState checkWinner(char[][] board) {
-        char winner = '_';
+        char winner = CellState.EMPTY.getStateSymbol();
         //check if there is a winner in row
         for (int i = 0; i < board.length; i++) {
             if (board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
                 winner = board[i][0];
-                System.out.println("Winner from row number:" + i + " is: " + board[i][0]);
+                //System.out.println("Winner from row number:" + i + " is: " + board[i][0]);
             }
         }
 
@@ -111,19 +125,18 @@ public class Board {
         for (int i = 0; i < board.length; i++) {
             if (board[0][i] == board[1][i] && board[1][i] == board[2][i]) {
                 winner = board[0][i];
-                System.out.println("Winner from column number:" + i + " is: " + board[0][i]);
+                //System.out.println("Winner from column number:" + i + " is: " + board[0][i]);
             }
         }
 
         //Check if there is a diagonnal winner
         if (board[0][0] == board[1][1] && board[1][1] == board[2][2])  {
                 winner = board[1][1];
-                System.out.println("Winner from diagonal front is: " + board[1][1]);
+                //System.out.println("Winner from diagonal front is: " + board[1][1]);
         }
         if (board[2][0] == board[1][1] && board[1][1] == board[0][2])  {
             winner = board[1][1];
-            System.out.println("Winner from diagonal oposite is: " + board[1][1]);
-
+            //System.out.println("Winner from diagonal oposite is: " + board[1][1]);
         }
         switch (winner) {
             case 'X' :

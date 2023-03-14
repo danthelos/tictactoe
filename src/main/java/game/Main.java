@@ -3,23 +3,20 @@ package game;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        GameState gameState = GameState.GAME_NOT_FINISHED;
-        char[][] gameBoard = Board.getBoard();
-        Board.printBoard(gameBoard);
-        char userSymbol = Board.calculateUserSymbol(gameBoard);
+        GameState gameState = GameState.X_TURN;
+        char[][] gameBoard = Board.initializeBoard();
 
-//        System.out.println("Count of X:" + Board.countOccurrences(gameBoard, 'X'));
-//        System.out.println("Count of O:" + Board.countOccurrences(gameBoard, 'O'));
-//        System.out.println("Count of empty cells:" + Board.countOccurrences(gameBoard, '_'));
-//        System.out.println("Your symbol is: " + Board.calculateUserSymbol(gameBoard));
+        Board.printBoard(gameBoard);
+        //char userSymbol = Board.calculateUserSymbol(gameBoard);
 
         int[] coordinates  = Move.getCoordinates();
 
         //System.out.println("Coordinates: " + Arrays.toString(Move.printCoordinates(coordinates)));
         //System.out.println("If this cell is empty ? " + Board.isCellEmpty(coordinates));
 
-        Board.fillCell(coordinates, userSymbol);
-        //System.out.println("Is board full ? " + Board.isBoardFull(gameBoard));
+        //Board.fillCell(coordinates, userSymbol);
+        Board.fillCell(coordinates, gameState.getStateSymbol());
+
         gameState = Board.checkWinner(gameBoard);
 
         if (Board.isBoardFull(gameBoard)) {
@@ -29,6 +26,8 @@ public class Main {
         Board.printBoard(gameBoard);
 
         System.out.println(gameState.getStateMessage());
+        gameState.switchTurn();
+
 
 
     }
