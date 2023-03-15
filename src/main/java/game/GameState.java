@@ -4,9 +4,7 @@ public enum GameState {
     X_WON("X wins"),
     O_WON("O wins"),
     GAME_NOT_FINISHED("Game not finished"),
-    DRAW("Draw"),
-    X_TURN("X turn", 'X'),
-    O_TURN("O Turn", 'O');
+    DRAW("Draw");
 
     //Fields
     private String stateMessage;
@@ -28,12 +26,5 @@ public enum GameState {
 
     public char getStateSymbol() {
         return stateSymbol;
-    }
-
-    public GameState switchTurn() {
-        if (equals(GameState.X_TURN)) {
-            return GameState.O_TURN;
-        }
-            return GameState.X_TURN;
     }
 }

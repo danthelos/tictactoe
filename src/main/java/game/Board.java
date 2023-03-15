@@ -5,15 +5,14 @@ import java.util.Scanner;
 public class Board {
 
     private static char[][] board = new char[3][3];
-    private static char userSymbol = 'X';
 
     //Constructors
     public Board() {
         this.board = board;
     }
 
+    // Use this method if you want to initialize filled board eq. _XO_XX_OO
     static char[][] getBoard() {
-
         System.out.print("Enter the cells: ");
         Scanner scanner = new Scanner(System.in);
         String inputData = scanner.nextLine();
@@ -72,7 +71,7 @@ public class Board {
     }
 
     static boolean isCellEmpty(int[] coordinates) {
-        if (board[coordinates[0]][coordinates[1]] == '_') {
+        if (board[coordinates[0]][coordinates[1]] == CellState.EMPTY.getStateSymbol()) {
             return true;
         }
         return false;
@@ -80,17 +79,6 @@ public class Board {
 
     static void fillCell(int[] coordinates, char userSymbol) {
         board[coordinates[0]][coordinates[1]] = userSymbol;
-    }
-
-    static char calculateUserSymbol(char board[][]) {
-        char userSymbol = 'X';
-        int countOccurrencesX = countOccurrences(board, 'X');
-        int countOccurrencesO = countOccurrences(board, 'O');
-
-        if (countOccurrencesX > countOccurrencesO) {
-            userSymbol = 'O';
-        }
-        return userSymbol;
     }
 
     static int countOccurrences(char[][] board, char element) {
@@ -146,6 +134,12 @@ public class Board {
             default :
                 return GameState.GAME_NOT_FINISHED;
         }
+    }
 
+    static PlayerState switchPlayer(PlayerState playerState) {
+        if (playerState.equals(PlayerState.X_TURN)) {
+            return PlayerState.O_TURN;
+        }
+        return PlayerState.X_TURN;
     }
 }
