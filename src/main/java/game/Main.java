@@ -7,11 +7,21 @@ public class Main {
         GameState gameState = GameState.GAME_NOT_FINISHED;
         PlayerState playerState = PlayerState.X_TURN;
         char[][] gameBoard = Board.initializeBoard();
+        int[] coordinates = {0,0};
 
         //Game start
         do {
             Board.printBoard(gameBoard);
-            int[] coordinates = Move.getCoordinates();
+
+            switch (playerState) {
+                case X_TURN:
+                    coordinates = Move.getCoordinates();
+                    break;
+                case O_TURN:
+                    coordinates = Move.randomCoordinates();
+                    System.out.println("Making move level \"easy\"");
+                    break;
+            }
             Board.fillCell(coordinates, playerState.getPlayerSymbol());
 
             gameState = Board.checkWinner(gameBoard);

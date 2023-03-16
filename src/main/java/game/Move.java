@@ -1,5 +1,6 @@
 package game;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Move {
@@ -47,6 +48,20 @@ public class Move {
         }
 
         return true;
+    }
+
+    static int[] randomCoordinates() {
+        Random random = new Random();
+        int lower = 0;
+        int upper = 2;
+        int intervalLength = upper - lower + 1;
+
+        do {
+            coordinates[0] = random.nextInt(intervalLength) + lower;
+            coordinates[1] = random.nextInt(intervalLength) + lower;
+        } while (!Board.isCellEmpty(coordinates));
+
+        return coordinates;
     }
 
 
