@@ -4,16 +4,21 @@ public enum GameState {
     X_WON("X wins"),
     O_WON("O wins"),
     GAME_NOT_FINISHED("Game not finished"),
-    DRAW("Draw");
+    DRAW("Draw"),
+    START,
+    EXIT;
 
     //Fields
     private String stateMessage;
     private char stateSymbol;
 
     //Constructors
+    GameState() {}
+
     GameState(String stateMessage) {
         this.stateMessage = stateMessage;
     }
+
     GameState(String stateMessage, char stateSymbol) {
         this.stateMessage = stateMessage;
         this.stateSymbol = stateSymbol;

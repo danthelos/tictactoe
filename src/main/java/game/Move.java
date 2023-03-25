@@ -63,6 +63,4 @@ public class Move {
 
         return coordinates;
     }
-
-
 }

@@ -135,11 +135,4 @@ public class Board {
                 return GameState.GAME_NOT_FINISHED;
         }
     }
-
-    static PlayerState switchPlayer(PlayerState playerState) {
-        if (playerState.equals(PlayerState.X_TURN)) {
-            return PlayerState.O_TURN;
-        }
-        return PlayerState.X_TURN;
-    }
 }
