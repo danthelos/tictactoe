@@ -31,9 +31,14 @@ public class Game {
                     coordinates = Move.getCoordinates();
                     break;
                 case AI_EASY:
-                    //Computer is moving
+                    //Computer easy level is moving
                     coordinates = Move.randomCoordinates();
                     System.out.println("Making move level \"easy\"");
+                    break;
+                case AI_MEDIUM:
+                    //Computer medium level is moving
+                    coordinates = Move.mediumMove();
+                    System.out.println("Making move level \"medium\"");
                     break;
             }
             //Fill cell with activePlayer symbol

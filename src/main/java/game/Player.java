@@ -42,6 +42,9 @@ public class Player {
             case "easy" :
                 setType(PlayerType.AI_EASY);
                 break;
+            case "medium" :
+                setType(PlayerType.AI_MEDIUM);
+                break;
         }
     }
 

@@ -1,6 +1,7 @@
 package game;
 
 import java.util.Scanner;
+import static game.PlayerType.isPlayerType;
 
 public class Menu {
 
@@ -29,9 +30,10 @@ public class Menu {
             System.out.println("Bad parameters!");
             return false;
         }
-        if (command[0].equals("start") &&
-                (command[1].equals("easy") || command[1].equals("user")) &&
-                (command[2].equals("easy") || command[2].equals("user"))) {
+        if (command[0].equals("start") && isPlayerType(command[1]) && isPlayerType(command[2]))
+//                (command[1].equals("easy") || command[1].equals("user")) &&
+//                (command[2].equals("easy") || command[2].equals("user")))
+        {
             return true;
         }
         System.out.println("Bad parameters!");

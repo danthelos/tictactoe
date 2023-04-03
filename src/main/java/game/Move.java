@@ -63,4 +63,10 @@ public class Move {
 
         return coordinates;
     }
+
+    static int[] mediumMove() {
+
+        coordinates = randomCoordinates();
+        return coordinates;
+    }
 }
